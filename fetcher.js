@@ -15,7 +15,7 @@ request(arg[0], (error, response, body) => {
 
   fs.writeFile(arg[1], body, 'utf8', (err) => {
     if (err) throw err;
-    let stats = fs.statSync(arg[1])["size"]
+    let stats = fs.statSync(arg[1])["size"] // credit for >>>["size"]<<<< https://stackoverflow.com/questions/42363140/how-to-find-the-size-of-the-file-in-node-js
     console.log(`Downloaded and saved ${stats} bytes to ${arg[1]}!`)
   });
 
