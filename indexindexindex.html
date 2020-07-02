@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
+  <link href="https://fonts.googleapis.com/css2?family=Jost&display=swap" rel="stylesheet">
+  <title>Line-Upz!</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    html {
+      font-family: 'Jost', sans-serif;
+      background-color: #fff;
+      font-size: 1rem;;
+    }
+    #top-section {
+      display: flex;
+      flex-direction: column;
+    }
+    #results, #feedback {
+      padding: 0rem 1.5rem 1.5rem 1.5rem;
+      align-items: center;
+    }
+    #feedback {
+      display: none;
+    }
+    #feedback.active {
+      display: block;
+    }
+    #main-container {
+        display: flex;
+        align-items: baseline;
+        justify-content: space-around;
+        padding: 3rem 0rem;
+    }
+
+    #map-container {
+    height: 66vh;    
+    }
+
+    #placeSubmit {
+      display: flex;
+      flex-direction: row;
+    }
+
+    #submit-btn, #inputTextExample {
+      padding: 7px 12px;
+      font-size: 1.2rem;
+      margin: 0 .2rem;
+    }
+
+    #formLocation {
+      padding: .5rem 0rem;
+      border: none;
+      border-radius: .35rem;
+      
+    }
+
+    #inputTextExample {
+      padding: 6px 16px;
+      border-style: inset;
+    }
+
+    #submit-btn {
+      cursor: pointer;
+      text-decoration: none;
+      background-color: #ffb254;
+      
+    }
+
+      /* API MAP - GOOGLE  */
+      /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+    #map {
+       height: 100%;
+    }
+    html, body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+    }
+
+/*Media Queries */
+@media only screen and (max-width: 768px) {
+  #main-container {
+    flex-direction: column;
+    align-items: center;
+    padding: 1.5rem 0rem;
+  }
+  #comming-soon {
+    display: none;
+  }
+  #formLocation {
+    padding: 1rem 0rem;
+  }
+  #map-container {
+    height: 50vh;    
+  }
+  #placeSubmit {
+      display: flex;
+      flex-direction: column;
+    }
+    #submit-btn, #inputTextExample {
+      margin: 0.2rem 0rem;
+    }
+}
+
+  </style>
+</head>
+<body>
+  <article id="top-section">
+
+    <div id="main-container">
+      <h1>Line-Upz</h1>
+      <div id="inputbox">
+        <form id="formLocation">
+          <!-- <h3>Location..</h3> -->
+          <div id="placeSubmit">
+            <input id="inputTextExample" type="text" name="location" placeholder="Enter a Location" size="25">
+            <button id="submit-btn" type="submit">Check Wait</button>
+        </div>
+    
+        </form>
+      </div>
+      <h3 id="comming-soon">Comming Soon!</h3>
+    </div>
+
+    <div id="results"></div>
+    <div id="feedback">
+      <a href="mailto:info@line-upz.com?subject=Sending Feedback for Line-Upz">Send Feedback</a>
+    </div>
+
+  </article>
+
+
+  <div id="map-container">
+    <div id="map"></div> <!-- this is the empty div for map -->
+  </div>
+  
+
+
+
+
+
+
+
+
+  <!-- <script>
+    // This example requires the Places library. Include the libraries=places
+    // parameter when you first load the API. For example:
+    // <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
+  
+    var map;
+    var service;
+    var infowindow;
+    
+
+    function initMap() {
+      infowindow = new google.maps.InfoWindow();
+      map = new google.maps.Map(document.getElementById('map'), {
+        center: {lat: 43.651070, lng: -79.347015},
+        zoom: 15
+      });
+      
+      var request = {
+          query: 'Fortinos',
+          fields: ['place_id', 'name', 'geometry', 'icon', 'photos'],
+        };
+
+        service = new google.maps.places.PlacesService(map);
+
+        service.findPlaceFromQuery(request, function(results, status) {
+          if (status === google.maps.places.PlacesServiceStatus.OK) {
+            for (var i = 0; i < results.length; i++) {
+              createMarker(results[i]); // creates marker
+              console.log(results); // outputs fields from request variable..
+            }
+
+            map.setCenter(results[0].geometry.location);
+          }
+        });
+      } // end MAIN MAP FUNCTION
+
+      function createMarker(place) {
+        var marker = new google.maps.Marker({
+          map: map,
+          position: place.geometry.location
+        });
+
+        google.maps.event.addListener(marker, 'click', function() {
+          infowindow.setContent(place.name);
+          infowindow.open(map, this);
+        });
+    }
+  </script> -->
+
+
+
+
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>  
+  <script src="scripts/maps-api.js" type="text/javascript"></script> 
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCzhB3q4RrSTwsdZqmtqiE7eZXjkUxTnt8&callback=initMap&libraries=places" async defer></script>  
+  
+
+
+
+
+ 
+</body>
+</html>
